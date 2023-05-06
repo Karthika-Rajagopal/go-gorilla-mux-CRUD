@@ -43,7 +43,7 @@ func main() {
 
 }
 
-func getPosts(w http.ResponseWriter, r *http.Request) {
+func getPosts(w http.ResponseWriter, r *http.Request) {   //extracts the ID parameter from the URL using mux.Vars(),if the ID parameter cannot be converted to an integer, or if the ID is out of range, it returns an appropriate error message,if the ID is valid, it returns the corresponding post using json.NewEncoder()
 	w.Header().Set("Content-Type", "Application/json")
 
 	var idParam string = mux.Vars(r)["id"]
