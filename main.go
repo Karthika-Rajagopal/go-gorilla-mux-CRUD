@@ -17,7 +17,7 @@ type User struct {
 	Email    string
 }
 
-// the Post is a struct  that  represent  a single  post
+// the Post is a struct  that  represent  a single  post, which is the instance of the user
 
 type Post struct {
 	Title  string
@@ -25,7 +25,7 @@ type Post struct {
 	Author User
 }
 
-var data []Post = []Post{}
+var data []Post = []Post{}  //global variable data, which is a slice of Post. This will be used to store the posts created through the API
 
 func main() {
 
@@ -80,7 +80,7 @@ func addItems(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func getItem(w http.ResponseWriter, r *http.Request) {
+func getItem(w http.ResponseWriter, r *http.Request) {   //getItem() function handles GET requests to the "/posts" endpoint. It sets the response header to JSON and encodes the data slice using json.NewEncoder()
 
 	w.Header().Set("Content-Type", "Application/json")
 
@@ -90,7 +90,7 @@ func getItem(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func updateItem(w http.ResponseWriter, r *http.Request) {
+func updateItem(w http.ResponseWriter, r *http.Request) {    //extracting the ID parameter and checking its validity, then decodes the request body into a new Post instance, replaces the corresponding element in the data slice with the new instance, and encodes the updated instance back to the response using json.NewEncoder()
 	w.Header().Set("Content-Type", "Application/json")
 
 	var idParam string = mux.Vars(r)["id"]
